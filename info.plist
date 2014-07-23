@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.yaitaimo.STICKIESSEARCH</string>
+	<key>category</key>
+	<string>Tools</string>
+	<key>connections</key>
+	<dict>
+		<key>6F647C41-D298-474C-9CA3-2C63FC8E0D26</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2F0A8C2C-F80F-4285-BA3D-08E9B1FB5620</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>yaitaimo</string>
+	<key>description</key>
+	<string>A search program for Stickies. You can edit one from the list.</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>StickiesSearch</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>4</integer>
+				<key>script</key>
+				<string>osascript stickies_activate.scpt "{query}"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.script</string>
+			<key>uid</key>
+			<string>2F0A8C2C-F80F-4285-BA3D-08E9B1FB5620</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>keyword</key>
+				<string>s</string>
+				<key>runningsubtext</key>
+				<string>Please wait...</string>
+				<key>script</key>
+				<string>python stickies_search.py {query}</string>
+				<key>title</key>
+				<string>Search Stickies with '{query}'</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>6F647C41-D298-474C-9CA3-2C63FC8E0D26</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>A search program for Stickies. You can edit one from the list.</string>
+	<key>uidata</key>
+	<dict>
+		<key>2F0A8C2C-F80F-4285-BA3D-08E9B1FB5620</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>6F647C41-D298-474C-9CA3-2C63FC8E0D26</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>https://github.com/yaitaimo</string>
+</dict>
+</plist>
