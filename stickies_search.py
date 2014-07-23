@@ -9,7 +9,7 @@ import json
 
 home = expanduser('~')
 
-from pystickies import parseStickies
+from pystickies.pystickies import parseStickies
 from workflow import Workflow
 
 OSX_NINE_DATABASE_FILE = home + '/Library/StickiesDatabase'
