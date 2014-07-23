@@ -48,6 +48,12 @@ def main(wf):
         stickies = json.loads(json_stickies)
     query = argv[1].decode('utf-8')
     item_isset = False
+    if query == "clear":
+        wf.add_item(
+                "CLEAR CACHED DATABASE",
+                arg='clear'.decode('utf-8'),
+                valid=True)
+        item_isset = True
     for stickie in stickies:
         if query in stickie:
             title = stickie[:50]
