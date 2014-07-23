@@ -1,0 +1,3 @@
+[submodule "pystickies"]
+	path = pystickies
+	url = git@github.com:vasi/pystickies.git
