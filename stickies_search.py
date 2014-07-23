@@ -7,7 +7,6 @@ from os.path import expanduser, getmtime, exists
 from subprocess import Popen, PIPE
 import json
 
-path.append('pystickies')
 home = expanduser('~')
 
 from pystickies import parseStickies
