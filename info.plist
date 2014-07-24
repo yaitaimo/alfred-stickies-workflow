@@ -59,7 +59,7 @@
 				<key>runningsubtext</key>
 				<string>Please wait...</string>
 				<key>script</key>
-				<string>python stickies_search.py {query}</string>
+				<string>python stickies_search.py "{query}"</string>
 				<key>title</key>
 				<string>Search Stickies with '{query}'</string>
 				<key>type</key>

@@ -3,6 +3,7 @@
 
 from sys import path, argv, exit
 import datetime
+import unicodedata
 from os.path import expanduser, getmtime, exists
 from subprocess import Popen, PIPE
 import json
@@ -18,7 +19,7 @@ def get_db_path():
     return OSX_NINE_DATABASE_FILE
 
 def main(wf):
-    filename = 'database_cache.txt'
+    filename = u'database_cache.txt'
     update_flag = False
     stickies = []
     if exists(filename):
@@ -39,15 +40,22 @@ def main(wf):
                 stderr=PIPE,
                 stdin=PIPE)
             (out, error) = pr.communicate(rtf)
-            stickies.append(out.decode('utf-8'))
+            out = unicodedata.normalize('NFC', out.decode('utf-8'))
+            stickies.append(out)
         json_stickies = json.dumps(stickies)
         f.write(json_stickies)
     else:
         f = open(filename)
         json_stickies = f.read()
         stickies = json.loads(json_stickies)
-    query = argv[1].decode('utf-8')
+    query = unicodedata.normalize('NFC', argv[1].decode('utf-8'))
     item_isset = False
+    if query == u"clear":
+        wf.add_item(
+                u'CLEAR CACHED DATABASE',
+                arg=u'clear',
+                valid=True)
+        item_isset = True
     for stickie in stickies:
         if query in stickie:
             title = stickie[:50]
@@ -61,7 +69,7 @@ def main(wf):
             wf.add_item(title, subtitle, arg=arg, valid=True)
             item_isset = True
     if item_isset is False:
-        wf.add_item("No Item")
+        wf.add_item(u'No Item')
     wf.send_feedback()
 
 if __name__ == '__main__':
