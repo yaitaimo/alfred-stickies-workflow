@@ -7,6 +7,7 @@ import unicodedata
 from os.path import expanduser, getmtime, exists
 from subprocess import Popen, PIPE
 import json
+import re
 
 home = expanduser('~')
 
@@ -42,12 +43,10 @@ def main(wf):
             (out, error) = pr.communicate(rtf)
             out = unicodedata.normalize('NFC', out.decode('utf-8'))
             stickies.append(out)
-        json_stickies = json.dumps(stickies)
-        f.write(json_stickies)
+        json.dump(stickies, f)
     else:
         f = open(filename)
-        json_stickies = f.read()
-        stickies = json.loads(json_stickies)
+        stickies = json.load(f)
     query = unicodedata.normalize('NFC', argv[1].decode('utf-8'))
     item_isset = False
     if query == u"clear":
@@ -56,11 +55,14 @@ def main(wf):
                 arg=u'clear',
                 valid=True)
         item_isset = True
+
+    query = re.compile(query, re.IGNORECASE)
     for stickie in stickies:
-        if query in stickie:
+        m = query.search(stickie)
+        if m:
+            index = m.start(0)
             title = stickie[:50]
             arg = stickie[:26]
-            index = stickie.index(query)
             start_offset = 23
             end_offset = 65
             start = index - start_offset if index > start_offset else 0
